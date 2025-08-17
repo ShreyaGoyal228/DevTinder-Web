@@ -3,7 +3,7 @@ import Footer from "./footer";
 import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-import { addUser } from "../store/slice";
+import { addUser } from "../store/user-slice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Body() {
@@ -33,7 +33,9 @@ export default function Body() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <div className="min-h-screen">
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

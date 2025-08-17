@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser } from "../store/slice";
+import { addUser } from "../store/user-slice";
 
 export default function Login() {
   const [emailId, setEmail] = useState("ishika@gmail.com");
