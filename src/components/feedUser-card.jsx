@@ -1,7 +1,23 @@
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFeed } from "../store/feed-slice";
 
 export default function FeedUserCard({ user }) {
   const loggedInUser = useSelector((store) => store.user);
+  const dispatch=useDispatch()
+  const handleSentRequest = async (status, userId) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3002/request/sent/${status}/${userId}`,
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeFeed(userId));
+      console.log("result is", res.data);
+    } catch (err) {
+      console.log("Error is :", err.response.data);
+    }
+  };
   return (
     <>
       <div className="flex items-center justify-center ">
@@ -24,8 +40,18 @@ export default function FeedUserCard({ user }) {
 
             {loggedInUser._id !== user.userId && (
               <div className="card-actions flex justify-end">
-                <button className="btn btn-primary">Interested</button>
-                <button className="btn btn-secondary">Ignore</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleSentRequest("interested", user._id)}
+                >
+                  Interested
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => handleSentRequest("ignore", user._id)}
+                >
+                  Ignore
+                </button>
               </div>
             )}
           </div>

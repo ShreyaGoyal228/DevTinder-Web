@@ -38,18 +38,18 @@ export default function Feed() {
 
   return (
     <>
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="carousel rounded-box w-[25.5%]">
-        {feedUsers.map((user, index) => {
-          return (
-            <>
-              <div key={index} className="carousel-item w-full">
-                <FeedUserCard user={user} />
-              </div>
-            </>
-          );
-        })}
-      </div>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="carousel rounded-box w-[25.5%]">
+          {feedUsers.map((user, index) => {
+            return (
+              <>
+                <div key={index} className="carousel-item w-full">
+                  <FeedUserCard user={user} />
+                </div>
+              </>
+            );
+          })}
+        </div>
       </div>
     </>
   );
