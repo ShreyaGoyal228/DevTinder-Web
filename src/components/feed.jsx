@@ -13,6 +13,7 @@ export default function Feed() {
       const res = await axios.get("http://localhost:3002/user/feed", {
         withCredentials: true,
       });
+      console.log("feed users are", res.data);
       dispatch(addFeed(res.data));
     } catch (err) {
       console.log("Error is :", err.response.data);
@@ -37,9 +38,19 @@ export default function Feed() {
 
   return (
     <>
-      {/* {feedUsers.map((user) => ( */}
-      <FeedUserCard user={feedUsers[0]} />
-      {/* ))} */}
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="carousel rounded-box w-[25.5%]">
+        {feedUsers.map((user, index) => {
+          return (
+            <>
+              <div key={index} className="carousel-item w-full">
+                <FeedUserCard user={user} />
+              </div>
+            </>
+          );
+        })}
+      </div>
+      </div>
     </>
   );
 }

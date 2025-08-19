@@ -14,6 +14,7 @@ export default function EditProfile({ user }) {
   const [age, setAge] = useState(user?.age || "");
   const [error, setError] = useState(null);
   const [toast, setToast] = useState(false);
+  const [userId,setUserId] = useState(user?._id || "");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function EditProfile({ user }) {
       setGender(user.gender || "");
       setPhotoUrl(user.photoUrl || "");
       setAge(user.age || "");
+      setUserId(user._id || "");
     }
   }, [user]);
 
@@ -147,7 +149,7 @@ export default function EditProfile({ user }) {
         </div>
 
         <FeedUserCard
-          user={{ firstName, lastName, about, photoUrl, age, gender }}
+          user={{userId,firstName, lastName, about, photoUrl, age, gender }}
         />
       </div>
       {toast && (

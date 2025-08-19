@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../store/user-slice";
 
 export default function Login() {
-  const [emailId, setEmail] = useState("ishika@gmail.com");
-  const [password, setPassword] = useState("Ishika@123");
+  const [emailId, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function Login() {
   };
   return (
     <>
-      <div className="flex items-center justify-center min-h-[75vh] ">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="card bg-base-100 w-96 shadow-xl ">
           <div className="card-body">
             <h2 className="card-title">Login</h2>
