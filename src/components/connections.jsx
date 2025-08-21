@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "./loading";
 import { addConnections } from "../store/connections-slice";
 import FeedUserCard from "./feedUser-card";
+import { BASE_URL } from "../utils/constants";
 export default function Connections() {
   const dispatch = useDispatch();
   const connections = useSelector((store) => store.connections);
   const getConnections = async () => {
     try {
-      const res = await axios.get("http://localhost:3002/user/connections", {
+      const res = await axios.get(`${BASE_URL}/user/connections`, {
         withCredentials: true,
       });
       dispatch(addConnections(res.data));

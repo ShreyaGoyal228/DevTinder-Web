@@ -5,13 +5,14 @@ import { addReceivedReq } from "../../store/received-request-slice";
 import Loading from "../loading";
 import { Link } from "react-router-dom";
 import RequestsReceivedCard from "./card";
+import { BASE_URL } from "../../utils/constants";
 export default function RequestsReceived() {
   const requests = useSelector((store) => store.receivedRequest);
   const dispatch = useDispatch();
   const getReceivedRequest = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3002/user/requests/received",
+        `${BASE_URL}/user/requests/received`,
         { withCredentials: true }
       );
       dispatch(addReceivedReq(res.data));

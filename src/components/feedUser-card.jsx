@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFeed } from "../store/feed-slice";
+import { BASE_URL } from "../utils/constants";
 
 export default function FeedUserCard({ user }) {
   const loggedInUser = useSelector((store) => store.user);
@@ -8,7 +9,7 @@ export default function FeedUserCard({ user }) {
   const handleSentRequest = async (status, userId) => {
     try {
       const res = await axios.post(
-        `http://localhost:3002/request/sent/${status}/${userId}`,
+        `${BASE_URL}/request/sent/${status}/${userId}`,
         {},
         { withCredentials: true }
       );

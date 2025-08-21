@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../store/feed-slice";
 import Loading from "./loading";
 import FeedUserCard from "./feedUser-card";
+import { BASE_URL } from "../utils/constants";
 export default function Feed() {
   const dispatch = useDispatch();
   const feedUsers = useSelector((store) => store.feed);
 
   const getFeedUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3002/user/feed", {
+      const res = await axios.get(`${BASE_URL}/user/feed`, {
         withCredentials: true,
       });
       console.log("feed users are", res.data);

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { addUser } from "../store/user-slice";
 import FeedUserCard from "./feedUser-card";
 import Loading from "./loading";
+import { BASE_URL } from "../utils/constants";
 export default function EditProfile({ user }) {
   const [firstName, setFirstName] = useState(user?.firstName || "");
   const [lastName, setLastName] = useState(user?.lastName || "");
@@ -40,7 +41,7 @@ export default function EditProfile({ user }) {
     try {
       setError(null);
       const user = await axios.patch(
-        "http://localhost:3002/profile/edit",
+        `${BASE_URL}/profile/edit`,
         { firstName, lastName, about, gender, photoUrl, age },
         { withCredentials: true }
       );

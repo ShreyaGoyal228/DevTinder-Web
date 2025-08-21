@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../store/user-slice";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../utils/constants";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3002/logout",
+        `${BASE_URL}/logout`,
         {},
         { withCredentials: true } //for the token addition or removal
       );

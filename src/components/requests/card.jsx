@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeReceivedReq } from "../../store/received-request-slice";
+import { BASE_URL } from "../../utils/constants";
 export default function RequestsReceivedCard({ user, requestId }) {
 //   const [message, setMessage] = useState(null);
   const dispatch = useDispatch();
   const handleReviewRequest = async (requestId, status) => {
     try {
       const res = await axios.post(
-        `http://localhost:3002/request/review/${status}/${requestId}`,
+        `${BASE_URL}/request/review/${status}/${requestId}`,
         {},
         { withCredentials: true }
       );
