@@ -3,18 +3,20 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../store/feed-slice";
 import Loading from "./loading";
+import { Navigate } from "react-router-dom";
 import FeedUserCard from "./feedUser-card";
 import { BASE_URL } from "../utils/constants";
 export default function Feed() {
   const dispatch = useDispatch();
+  // const navigate=useNavigate();
   const feedUsers = useSelector((store) => store.feed);
+  // const user = useSelector((store) => store.user);
 
   const getFeedUsers = async () => {
     try {
       const res = await axios.get(`${BASE_URL}/user/feed`, {
         withCredentials: true,
       });
-      console.log("feed users are", res.data);
       dispatch(addFeed(res.data));
     } catch (err) {
       console.log("Error is :", err.response.data);
@@ -25,6 +27,9 @@ export default function Feed() {
     getFeedUsers();
   }, []);
 
+  // if (!user) {
+  //   return <Navigate to="/login" replace />;
+  // }
   if (!feedUsers) {
     return (
       <>
@@ -39,17 +44,13 @@ export default function Feed() {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="carousel rounded-box w-[25.5%]">
-          {feedUsers.map((user, index) => {
-            return (
-              <>
-                <div key={index} className="carousel-item w-full">
-                  <FeedUserCard user={user} />
-                </div>
-              </>
-            );
-          })}
+      <div className="flex items-center justify-center min-h-screen px-4">
+        <div className=" w-full ">
+          {feedUsers[0] && (
+            <div className="animate-fadeIn">
+              <FeedUserCard user={feedUsers[0]} />
+            </div>
+          )}
         </div>
       </div>
     </>
