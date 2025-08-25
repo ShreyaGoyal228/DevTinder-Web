@@ -20,6 +20,7 @@ export default function Body() {
       dispatch(addUser(user.data));
     } catch (err) {
       if (err.status === 401) {
+        console.log("user not found, redirecting to login");
         return navigate("/login");
       }
       console.log("Error is : ", err);

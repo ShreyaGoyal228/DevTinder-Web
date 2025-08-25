@@ -3,14 +3,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../store/feed-slice";
 import Loading from "./loading";
-import { Navigate } from "react-router-dom";
 import FeedUserCard from "./feedUser-card";
 import { BASE_URL } from "../utils/constants";
 export default function Feed() {
   const dispatch = useDispatch();
-  // const navigate=useNavigate();
   const feedUsers = useSelector((store) => store.feed);
-  // const user = useSelector((store) => store.user);
 
   const getFeedUsers = async () => {
     try {
@@ -27,9 +24,6 @@ export default function Feed() {
     getFeedUsers();
   }, []);
 
-  // if (!user) {
-  //   return <Navigate to="/login" replace />;
-  // }
   if (!feedUsers) {
     return (
       <>
@@ -46,7 +40,7 @@ export default function Feed() {
     <>
       <div className="flex items-center justify-center min-h-screen px-4">
         <div className=" w-full ">
-          {feedUsers[0] && (
+          {feedUsers && feedUsers.length > 0 && feedUsers[0] && (
             <div className="animate-fadeIn">
               <FeedUserCard user={feedUsers[0]} />
             </div>
